@@ -13,6 +13,7 @@ Spring MVC
 Spring Security
 Lombok
 swagger: /v2/api-docs
+Junit, Mockito e hamcrest
 ```
 
 FrontEnd
