@@ -9,7 +9,7 @@ import { Restaurante } from '../restaurantes/restaurante';
 })
 export class HomeComponent implements OnInit {
 
-  title = 'Sistema de Cadastro de Restaurante';
+  title = 'Sistema de Cadastro de Restaurante (Avaliação)';
   urlImagem = 'http://lorempixel.com/640/480/food/';
 
   public restaurants: Restaurante[] = [];
