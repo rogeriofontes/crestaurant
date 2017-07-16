@@ -51,6 +51,16 @@ export class RestauranteService {
             //.catch(this.handleError);
     }
 
+    //busca pelo id
+    getPlatesById(id: number): Promise<Restaurante> {
+        const url = `${this.apiUrl}/${id}/plates`;
+        return this.http.get(url)
+            .toPromise()
+            .then(response => response.json() as Restaurante)
+        
+            //.catch(this.handleError);
+    }
+
     //Metodo POST
     post(restaurante: Restaurante): Promise<Restaurante> {
         return this.http

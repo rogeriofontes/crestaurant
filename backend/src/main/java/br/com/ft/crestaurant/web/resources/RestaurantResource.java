@@ -57,6 +57,14 @@ public class RestaurantResource {
 		return new ResponseEntity<>(restaurant, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/{id}/plates", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@Timed
+	public ResponseEntity<RestaurantTO> getRestaurantPlatesById(@PathVariable("id") Long id) {
+		RestaurantTO restaurant = restaurantService.getRestaurantPlatesById(id);
+		return new ResponseEntity<>(restaurant, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/find-by-name/{name}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@Timed

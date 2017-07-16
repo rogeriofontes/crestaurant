@@ -1,7 +1,9 @@
 package br.com.ft.crestaurant.web.to;
 
 import java.io.Serializable;
+import java.util.List;
 
+import br.com.ft.crestaurant.models.Plate;
 import br.com.ft.crestaurant.models.RestaurantType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,4 +41,7 @@ public class RestaurantTO implements Serializable {
 	@Getter
 	@Setter
 	private RestaurantType restaurantType;
+	@Getter
+	@Setter
+	private List<Plate> plates;
 }

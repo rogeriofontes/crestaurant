@@ -12,6 +12,7 @@ Spring Data-JPA
 Spring MVC
 Spring Security
 Lombok
+swagger: /v2/api-docs
 ```
 
 FrontEnd

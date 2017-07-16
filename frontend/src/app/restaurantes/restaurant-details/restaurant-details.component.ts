@@ -26,7 +26,7 @@ export class RestaurantDetailsComponent implements OnInit {
       if (!id)
         return;
 
-      this.restauranteService.getById(id)
+      this.restauranteService.getPlatesById(id)
         .then(
           restaurante => this.restaurant = restaurante,
           response => {

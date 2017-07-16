@@ -13,7 +13,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.ft.crestaurant.models.Plate;
 import br.com.ft.crestaurant.models.Restaurant;
+import br.com.ft.crestaurant.repositories.PlateRepository;
 import br.com.ft.crestaurant.repositories.RestaurantRepository;
 import br.com.ft.crestaurant.services.RestaurantService;
 import br.com.ft.crestaurant.web.to.RestaurantTO;
@@ -25,6 +27,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 
 	@Autowired
 	private RestaurantRepository restaurantRepository;
+	
+	@Autowired
+	private PlateRepository plateRepository;
 	
 	@Autowired
 	private ConversionService conversionService;
@@ -62,7 +67,17 @@ public class RestaurantServiceImpl implements RestaurantService {
 		Restaurant result = restaurantRepository.findOne(id);
 		return conversionService.convert(result, RestaurantTO.class);
 	}
-
+	
+	@Override
+	public RestaurantTO getRestaurantPlatesById(Long id) {
+		Restaurant result = restaurantRepository.findOne(id);
+		RestaurantTO restautantTO = conversionService.convert(result, RestaurantTO.class);
+		
+		List<Plate> plates = plateRepository.findByRestaurantId(id);
+		restautantTO.setPlates(plates);
+		return restautantTO;
+	}
+	
 	@Override
 	@Cacheable("restaurantsInCache")
 	public List<RestaurantTO> getAll() {
