@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { environment } from '../../environments/environment';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -10,22 +11,23 @@ import { RestaurantType } from './restaurant-type';
 
 @Injectable()
 export class RestaurantsTypesService {
+    public token: string;
+    private currentUser;
+    private options;
+  
+    private headers = new Headers({ 'Content-Type': 'application/json' }); 
+    private apiUrl = environment.apiUrl + '/restaurant-types'; 
 
-  constructor(private http: Http) { }
-
-  private headers = new Headers({ 'Content-Type': 'application/json' });  
-    //GET: busca os restaurant-types
-    private apiUrl = 'http://localhost:9901/restaurant-types'; 
+    constructor(private http: Http) { 
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.token = this.currentUser && this.currentUser.token;
+        this.headers.append('Authorization', 'Bearer ' +  this.token);
+        this.options = new RequestOptions({ headers:  this.headers });
+    }
 
     //Metodo GET all
     get(): Promise<RestaurantType[]> {
-        // var r = this.http.get(this.apiUrl)
-        //     .toPromise()
-        //     //valida a consulta
-        //     .then(response => response.json() as RestaurantType[])
-        //     .catch(this.handleError);
-        // return r;
-        return this.http.get(this.apiUrl)
+        return this.http.get(this.apiUrl, this.options)
             .toPromise()
             .then(response => response.json() as RestaurantType[])
             //.catch(this.handleError);
@@ -35,7 +37,7 @@ export class RestaurantsTypesService {
     getByName(name: string): Promise<RestaurantType> {
         const url = `${this.apiUrl}/find-by-name/${name}`;
         console.log('->--'+url);
-        return this.http.get(url)
+        return this.http.get(url, this.options)
             .toPromise()
             .then(response => response.json() as RestaurantType)
             //.catch(this.handleError);
@@ -45,7 +47,7 @@ export class RestaurantsTypesService {
   //busca pelo id
     getById(id: number): Promise<RestaurantType> {
         const url = `${this.apiUrl}/${id}`;
-        return this.http.get(url)
+        return this.http.get(url, this.options)
             .toPromise()
             .then(response => response.json() as RestaurantType)
         
@@ -54,7 +56,7 @@ export class RestaurantsTypesService {
     //Metodo POST
     post(restaurantType: RestaurantType): Promise<RestaurantType> {
         return this.http
-            .post(this.apiUrl, JSON.stringify(restaurantType), { headers: this.headers })
+            .post(this.apiUrl, JSON.stringify(restaurantType), this.options)
             .toPromise()
             //valida resposta
             .then(res => res.json() as RestaurantType)
@@ -65,7 +67,7 @@ export class RestaurantsTypesService {
     update(restaurantType: RestaurantType): Promise<RestaurantType> {
         const url = `${this.apiUrl}/${restaurantType.id}`;
         return this.http
-            .put(url, JSON.stringify(restaurantType), { headers: this.headers })
+            .put(url, JSON.stringify(restaurantType), this.options)
             .toPromise()
             //valida resposta
             .then(res => res.json() as RestaurantType)
@@ -73,7 +75,7 @@ export class RestaurantsTypesService {
     }
 
     delete(id){
-        return this.http.delete(this.getUserUrl(id), { headers: this.headers })
+        return this.http.delete(this.getUserUrl(id), this.options)
             .toPromise()
             //valida resposta
             .then(res => console.log(res))

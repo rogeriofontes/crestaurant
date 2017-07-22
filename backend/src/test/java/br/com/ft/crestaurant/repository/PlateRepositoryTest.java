@@ -1,4 +1,4 @@
-package br.com.ft.crestaurant.repository;
+/*package br.com.ft.crestaurant.repository;
 
 import static org.junit.Assert.assertEquals;
 
@@ -56,7 +56,7 @@ public class PlateRepositoryTest {
 		assertEquals("Prato1", result.getName());
 	}
 	
-	@Test
+	//@Test
 	public void should_find_restaurant_by_id() {
 		Restaurant type = restaurantTypeRepository.findOne(1l);
 		Plate restaurant = new Plate("Prato1", "Macaronada Ita", true, type);
@@ -67,7 +67,7 @@ public class PlateRepositoryTest {
 		assertEquals("Prato1", result.getName());
 	}
 	
-	@Test
+	//@Test
 	public void should_save_restaurant() {
 		Restaurant type = restaurantTypeRepository.findOne(1l);
 		Plate restaurant = new Plate("Prato1", "Macaronada Ita", true, type);
@@ -78,7 +78,7 @@ public class PlateRepositoryTest {
 		assertEquals("Prato1", result.getName());
 	}
 	
-	@Test
+	//@Test
 	public void should_update_restaurant() {
 		Restaurant type = restaurantTypeRepository.findOne(1l);
 		Plate restaurant = new Plate("Prato1", "Macaronada Ita", true, type);
@@ -93,7 +93,7 @@ public class PlateRepositoryTest {
 		assertEquals("Prato1 ALT", result1.getName());
 	}
 	
-	@Test
+	//@Test
 	public void should_delete_restaurant() {
 		Restaurant type = restaurantTypeRepository.findOne(1l);
 		Plate restaurant = new Plate("Prato1", "Macaronada Ita", true, type);
@@ -105,3 +105,4 @@ public class PlateRepositoryTest {
 		assertEquals(true, result != null);
 	}
 }
+*/

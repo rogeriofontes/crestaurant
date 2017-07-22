@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthGuard } from '../user/auth-guard';
 
 @Component({
   selector: 'app-menus',
@@ -6,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menus.component.css']
 })
 export class MenusComponent implements OnInit {
+  isSignedIn: boolean;
 
-  constructor() { }
+  constructor(private authGuard: AuthGuard) { 
+    this.isSignedIn = this.authGuard.canActivate();
+    console.log('Session: ' + this.isSignedIn);
+  }
 
   ngOnInit() {
   }

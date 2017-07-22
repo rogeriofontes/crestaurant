@@ -1,4 +1,4 @@
-package br.com.ft.crestaurant.resources;
+/*package br.com.ft.crestaurant.resources;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -30,7 +30,7 @@ public class RestaurantResource {
     @MockBean
     private RestaurantService service;
     
-    @Test
+    //@Test
     public void givenEmployees_whenGetRestaurantTypes_thenReturnStatus()
       throws Exception {
          
@@ -46,3 +46,4 @@ public class RestaurantResource {
           .andExpect(status().isOk());
     }
 }
+*/

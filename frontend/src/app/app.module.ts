@@ -16,12 +16,17 @@ import { routing } from './app.routing';
 import { RestauranteService } from './restaurantes/restaurantes.service';
 import { PratoService } from './pratos/prato.service';
 import { RestaurantsTypesService } from './restaurants-types/restaurants-types.service';
+import { UserService } from './user/user.service';
+import { AuthenticationService } from './user/authentication.service';
 
 import { RestaurantFormComponent } from './restaurantes/restaurant-form/restaurant-form.component';
 import { PlateFormComponent } from './pratos/plate-form/plate-form.component';
 import { RestaurantsTypesComponent } from './restaurants-types/restaurants-types.component';
 import { RestaurantTypeFormComponent } from './restaurants-types/restaurant-type-form/restaurant-type-form.component';
 import { RestaurantDetailsComponent } from './restaurantes/restaurant-details/restaurant-details.component';
+import { UserComponent } from './user/user.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './user/auth-guard';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,9 @@ import { RestaurantDetailsComponent } from './restaurantes/restaurant-details/re
     PlateFormComponent,
     RestaurantsTypesComponent,
     RestaurantTypeFormComponent,
-    RestaurantDetailsComponent
+    RestaurantDetailsComponent,
+    UserComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +52,7 @@ import { RestaurantDetailsComponent } from './restaurantes/restaurant-details/re
     routing,
     CommonModule
   ],
-  providers: [RestauranteService, PratoService, RestaurantsTypesService],
+  providers: [AuthGuard, RestauranteService, PratoService, RestaurantsTypesService, UserService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 package br.com.ft.crestaurant.web.resources;
 
+import java.util.List;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,5 +37,12 @@ public class UserResource {
 		logger.info("Finded user: %s", !StringUtils.isEmpty(user.toString()));
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
-
+	
+	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@Timed
+	public ResponseEntity<List<User>> list() {
+		List<User> plates = userRepository.findAll();
+		return new ResponseEntity<>(plates, HttpStatus.OK);
+	}
 }
